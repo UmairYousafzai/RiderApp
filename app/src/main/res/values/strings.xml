@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Rider App</string>
+
+    <string name="location_permission">Location Permission</string>
+    <string name="permission_dialog_description">\"This Permission Needed For The Better Experience Of The App. \"</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="logout">Logout</string>
+    <string name="location">Location</string>
+    <string name="select">Select</string>
+    <string name="start">Start</string>
+    <string name="back">Back</string>
+    <string name="pending">Pending</string>
+    <string name="hold">Hold</string>
+    <string name="dispatch">Dispatch</string>
+    <string name="complete">Complete</string>
+    <string name="cancel">Cancel</string>
+    <string name="customer_name">Customer: </string>
+    <string name="mobile">Mobile: </string>
+    <string name="date">Date: </string>
+    <string name="tracking_code">Tracking Code: </string>
+    <string name="order_no">Order No: </string>
+    <string name="distance">Distance: </string>
+    <string name="status">Status: </string>
+    <string name="address">Adress: </string>
+    <string name="close">Close</string>
+
+</resources>

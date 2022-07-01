@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.moveitech.riderapp.ui.authentication.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_orderListFragment"
+            app:destination="@id/orderListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/nav_graph"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.moveitech.riderapp.ui.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash"
+        >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/nav_graph"
+            />
+        <action
+            android:id="@+id/action_splashFragment_to_orderListFragment"
+            app:destination="@id/orderListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/nav_graph"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/orderListFragment"
+        android:name="com.moveitech.riderapp.ui.OrderListFragment"
+        android:label="OrderListFragment"
+        tools:layout="@layout/fragment_order_list">
+        <action
+            android:id="@+id/action_orderListFragment_to_mapFragment"
+            app:destination="@id/mapFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_orderListFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/nav_graph"/>
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.moveitech.riderapp.ui.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map"
+
+        >
+        <argument
+            android:name="longitude"
+            app:argType="string" />
+        <argument
+            android:name="latitude"
+            app:argType="string" />
+    </fragment>
+</navigation>
