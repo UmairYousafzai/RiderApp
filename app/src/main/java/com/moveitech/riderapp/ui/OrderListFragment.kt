@@ -43,6 +43,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
     override fun initViews() {
         setHasOptionsMenu(true)
         showToolbar()
+
         getRiderDetails()
         swipeListener()
         binding.viewModel = viewModel
@@ -147,7 +148,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
     }
 
     private fun startService(order: Order?, locationType: Int) {
-        if (checkPermission()) {
+        if (checkPermission(requireContext())) {
             if (requireContext().isLocationEnabled()) {
                 order?.let { saveOrderNum(it.OrderNo) }
                 Intent(requireContext(), LocationService::class.java).apply {

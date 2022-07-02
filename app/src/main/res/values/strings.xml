@@ -19,7 +19,7 @@
     <string name="customer_name">Customer: </string>
     <string name="mobile">Mobile: </string>
     <string name="date">Date: </string>
-    <string name="tracking_code">Tracking Code: </string>
+    <string name="tracking_code">Tracking Id: </string>
     <string name="order_no">Order No: </string>
     <string name="distance">Distance: </string>
     <string name="status">Status: </string>

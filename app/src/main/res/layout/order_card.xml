@@ -30,29 +30,35 @@
             <TextView
                 android:id="@+id/tv_customer_name"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="4dp"
-                android:text="@{@string/customer_name+model.partyName,default=CustomerName}"
+                android:text="@{model.partyName,default=CustomerName}"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/tv_mobile_num"
                 app:layout_constraintEnd_toStartOf="@id/tv_tracking_code"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_tracking_code" />
+                app:layout_constraintTop_toTopOf="@id/tv_tracking_code"
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/ic_baseline_person_24"
+                />
 
             <TextView
                 android:id="@+id/tv_mobile_num"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@{@string/mobile+model.partyMobile,default=MobileNum}"
+                android:text="@{model.partyMobile,default=MobileNum}"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:textColor="@color/app_theme_color"
                 app:layout_constraintBottom_toTopOf="@id/tv_time"
                 app:layout_constraintEnd_toEndOf="@id/tv_customer_name"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_customer_name" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_customer_name"
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/ic_baseline_call_24"                 />
 
 
             <TextView
@@ -60,14 +66,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@{@string/date+model.deliveryDateTime,default=DateTime}"
+                android:text="@{model.deliveryDateTime,default=DateTime}"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/tv_status"
-
                 app:layout_constraintEnd_toEndOf="@id/tv_customer_name"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_mobile_num" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_mobile_num"
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/ic_baseline_date_range_24"
+                />
 
             <TextView
                 android:id="@+id/tv_address"
@@ -84,7 +92,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btn_rider_location_selection"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_time"
+                app:layout_constraintTop_toBottomOf="@+id/tv_status"
                 android:layout_marginEnd="5dp"/>
 
             <ImageButton
@@ -104,8 +112,8 @@
             <TextView
                 android:id="@+id/tv_tracking_code"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:text="@{@string/tracking_code+model.tracingCodeBusinessWise,default=trackingCode}"
+                android:layout_height="wrap_content"
+                android:text="@{@string/tracking_code+' '+model.tracingCodeBusinessWise,default=trackingCode}"
                 android:textColor="@color/pink_text"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -117,8 +125,8 @@
             <TextView
                 android:id="@+id/tv_order_no"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:text="@{@string/order_no+model.orderNo,default=OrderNo}"
+                android:layout_height="wrap_content"
+                android:text="@{@string/order_no+' '+model.orderNo,default=OrderNo}"
                 android:textColor="@color/blue_text"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -131,8 +139,7 @@
             <TextView
                 android:id="@+id/tv_distance"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:text="@{@string/distance+String.valueOf(model.distance),default=Distance}"
+                android:layout_height="wrap_content"
                 android:textColor="#d1a859"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -144,8 +151,8 @@
             <TextView
                 android:id="@+id/tv_status"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:text="@{@string/status+model.status,default=status}"
+                android:layout_height="wrap_content"
+                android:text="@{@string/status+' '+model.status,default=status}"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -163,7 +170,7 @@
                 android:text="@{model.status}"
                 android:textSize="10sp"
                 android:textStyle="bold"
-                app:backgroundTint="@color/black"
+                app:backgroundTint="@color/app_theme_color"
                 app:icon="@drawable/ic_baseline_keyboard_arrow_down_24"
                 app:iconGravity="end"
                 app:layout_constraintBottom_toBottomOf="parent"

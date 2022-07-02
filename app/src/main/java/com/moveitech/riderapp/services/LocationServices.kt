@@ -8,6 +8,7 @@ import android.app.Service
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.os.Looper
@@ -39,6 +40,7 @@ class LocationService : Service() {
     private val scope = CoroutineScope(Dispatchers.IO + job)
     private var locationType:Int=0
     private var trackingCode:String="0"
+    private var interval: Long = 60000
 
     @Inject
     lateinit var repository: ApiDataRepository
@@ -127,17 +129,23 @@ class LocationService : Service() {
         intent.action = ACTION_STOP_LOCATION_SERVICE
 
         val turnOfServicesPendingIntent: PendingIntent =
-            PendingIntent.getService(this, 100, intent, 0)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PendingIntent.getService(this, 100, intent, PendingIntent.FLAG_IMMUTABLE)
+            } else {
+                PendingIntent.getService(this, 100, intent, 0)
+            }
 
-        val builder: NotificationCompat.Builder = NotificationCompat.Builder(
-            this,
-            Location_NOTIFICATION_CHANNEL_ID
-        )
+        val builder: NotificationCompat.Builder = NotificationCompat.Builder(this)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder.setChannelId(Location_NOTIFICATION_CHANNEL_ID)
+        }
+
 
         builder.apply {
-            setSmallIcon(R.drawable.softlogo)
-            setContentTitle("Rider Tracker")
-            setContentText("Rider Tracker storing your location")
+            setSmallIcon(R.drawable.ic_launcher_foreground)
+            setContentTitle("Rider App")
+            setContentText("Rider storing your location")
+            setCategory(Notification.CATEGORY_SERVICE)
             addAction(NotificationCompat.Action(0, "Close", turnOfServicesPendingIntent))
         }
 
@@ -150,25 +158,7 @@ class LocationService : Service() {
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             if (baseContext.isLocationEnabled()) {
-
-                // Initializing LocationRequest
-                // object with appropriate methods
-                val locationRequest: LocationRequest = LocationRequest.create().apply {
-                    priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-                    interval = 6000
-                    fastestInterval = 60000
-                }
-
-
-                // setting LocationRequest
-                // on FusedLocationClient
-                LocationServices.getFusedLocationProviderClient(this)
-                    .requestLocationUpdates(
-                        locationRequest,
-                        locationCallback,
-                        Looper.getMainLooper()
-                    )
-
+                initiateLocationUpdates()
             }
         } else {
             Toast.makeText(
@@ -177,9 +167,25 @@ class LocationService : Service() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-        startForeground(123, notification)
+        startForeground(1, builder.build())
     }
 
+    @SuppressLint("MissingPermission")
+    private fun initiateLocationUpdates() {
+
+        val locationRequest: LocationRequest = LocationRequest.create().apply {
+            priority = Priority.PRIORITY_HIGH_ACCURACY
+            interval = this@LocationService.interval
+            fastestInterval = this@LocationService.interval
+        }
+
+        LocationServices.getFusedLocationProviderClient(this)
+            .requestLocationUpdates(
+                locationRequest,
+                locationCallback,
+                Looper.getMainLooper()
+            )
+    }
     fun stopLocationUpdates() {
         LocationServices.getFusedLocationProviderClient(this)
             .removeLocationUpdates(locationCallback)

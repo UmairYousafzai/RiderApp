@@ -1,10 +1,13 @@
 package com.moveitech.riderapp.adapter
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat.startActivity
 import com.google.android.material.button.MaterialButton
 import com.moveitech.riderapp.R
 import com.moveitech.riderapp.dataModel.order.Order
@@ -15,6 +18,7 @@ import com.moveitech.riderapp.utils.Constants.Companion.RIDER_COMPlETE_BTN
 import com.moveitech.riderapp.utils.Constants.Companion.RIDER_DISPATCH_BTN
 import com.moveitech.riderapp.utils.Constants.Companion.RIDER_HOLD_BTN
 import com.moveitech.riderapp.utils.Constants.Companion.RIDER_PENDING_BTN
+import com.moveitech.riderapp.utils.getDistanceBetweenLocation
 import com.moveitech.riderapp.viewModel.OrderViewModel
 
 
@@ -30,6 +34,24 @@ class OrdersAdapter(list: ArrayList<String> = ArrayList(), val viewModel: OrderV
 
         binding.btnRiderLocationSelection.isActivated = model.equals(orderNum).not()
 
+        binding.tvDistance.apply {
+            text= "Distance: 0 Km "
+            getDistanceBetweenLocation(model.Latitude.toDouble(),model.Longitude.toDouble(),context)
+            {
+                text="Distance: $it"
+            }
+
+        }
+
+        binding.tvMobileNum.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL)
+            with(binding.tvMobileNum)
+            {
+                intent.data = Uri.parse("tel:$text")
+                context.startActivity(intent)
+            }
+
+        }
 
         binding.btnRiderLocationSelection.setOnClickListener {
             binding.btnRiderLocationSelection.setIconResource(R.drawable.ic_baseline_keyboard_arrow_up_24)
