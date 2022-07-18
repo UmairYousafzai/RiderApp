@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable-v24/ic_baseline_arrow_forward_ios_24.xml" value="0.1355" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable/back.xml" value="0.1355" />
+        <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable/current_location.xml" value="0.1645" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.198" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable/tv_address_bg.xml" value="0.1355" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
@@ -13,6 +14,7 @@
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_map.xml" value="0.17074275362318841" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_order_list.xml" value="0.25" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_splash.xml" value="0.17074275362318841" />
+        <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_tracking_map.xml" value="0.1921875" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/order_card.xml" value="0.25" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/progress_dialog_layout.xml" value="0.17074275362318841" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/menu/drop_down_menu.xml" value="0.1921875" />

@@ -15,12 +15,14 @@ class Constants {
 
         const val LOGIN = "api/SaleOrder/RiderLogin"
         const val SALE_ORDER_BY_RIDER = "api/SaleOrder/SalesOrderByRider"
+        const val TRACKING_BY_SALE_ORDER = "api/SaleOrder/TracingRiderBySaleOrder"
         const val SAVE_ORDER_TRACKING = "api/SaleOrder/SaveOrderTracking"
         const val SAVE_ORDER_STATUS = "api/SaleOrder/OrderStatusChangeByRider"
 
         /****************************   BTN KEY **********************/
 
         const val LOCATION_BTN=10
+        const val TRACK_LOCATION_BTN=6
         const val RIDER_PENDING_BTN=0
         const val RIDER_HOLD_BTN=1
         const val RIDER_DISPATCH_BTN=2

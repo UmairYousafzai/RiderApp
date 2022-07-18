@@ -66,6 +66,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/nav_graph"/>
+        <action
+            android:id="@+id/action_orderListFragment_to_trackMapFragment"
+            app:destination="@id/trackMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -79,6 +82,18 @@
             app:argType="string" />
         <argument
             android:name="latitude"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/trackMapFragment"
+        android:name="com.moveitech.riderapp.ui.TrackMapFragment"
+        android:label="TrackMapFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right">
+        <argument
+            android:name="tracking_id"
             app:argType="string" />
     </fragment>
 </navigation>

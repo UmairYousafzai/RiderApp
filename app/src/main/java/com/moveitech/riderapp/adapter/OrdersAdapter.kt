@@ -36,9 +36,13 @@ class OrdersAdapter(list: ArrayList<String> = ArrayList(), val viewModel: OrderV
 
         binding.tvDistance.apply {
             text= "Distance: 0 Km "
-            getDistanceBetweenLocation(model.Latitude.toDouble(),model.Longitude.toDouble(),context)
+            if(model.Latitude.isEmpty().not()&& model.Longitude.isEmpty().not())
             {
-                text="Distance: $it"
+                getDistanceBetweenLocation(model.Latitude.toDouble(),model.Longitude.toDouble(),context)
+                {
+                    text="Distance: $it"
+                }
+
             }
 
         }

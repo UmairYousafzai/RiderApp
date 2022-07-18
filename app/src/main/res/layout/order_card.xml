@@ -106,8 +106,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_tracking_code"
                 app:layout_constraintTop_toTopOf="@id/tv_tracking_code"
-                app:layout_constraintBottom_toBottomOf="@id/tv_tracking_code"
+                app:layout_constraintBottom_toTopOf="@id/btn__track_location"
                 app:tint="@color/custome_gareen" />
+            <ImageButton
+                android:id="@+id/btn__track_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:maxHeight="115dp"
+                android:layout_marginTop="5dp"
+                android:onClick="@{()-> viewModel.onAdapterItemClick(Constants.TRACK_LOCATION_BTN,model)}"
+                android:src="@drawable/ic_baseline_location_on_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_order_no"
+                app:layout_constraintTop_toBottomOf="@id/btn_location"
+                app:tint="@android:color/holo_red_dark" />
 
             <TextView
                 android:id="@+id/tv_tracking_code"
@@ -132,7 +145,7 @@
                 android:textStyle="bold"
 
                 app:layout_constraintBottom_toTopOf="@id/tv_distance"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn__track_location"
                 app:layout_constraintStart_toStartOf="@id/tv_tracking_code"
                 app:layout_constraintTop_toBottomOf="@id/tv_tracking_code" />
 
@@ -144,7 +157,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/tv_status"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn__track_location"
                 app:layout_constraintStart_toStartOf="@id/tv_tracking_code"
                 app:layout_constraintTop_toBottomOf="@id/tv_order_no" />
 

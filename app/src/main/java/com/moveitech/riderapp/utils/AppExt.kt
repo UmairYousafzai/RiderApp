@@ -66,7 +66,7 @@ fun getDate(): String {
     val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
     return format.format(calendar.time)
 }
-
+ 
 fun Context.getCompleteAddressString(LATITUDE: Double, LONGITUDE: Double): String {
     var strAdd = ""
     val geocoder = Geocoder(this, Locale.getDefault())

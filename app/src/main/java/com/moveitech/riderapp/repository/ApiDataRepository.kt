@@ -4,6 +4,7 @@ package com.moveitech.riderapp.repository
 import com.moveitech.riderapp.dataModel.generalReponse.BaseResponse
 import com.moveitech.riderapp.dataModel.location.LocationData
 import com.moveitech.riderapp.dataModel.location.LocationRequest
+import com.moveitech.riderapp.dataModel.location.TrackingResponse
 import com.moveitech.riderapp.dataModel.login.LoginResponse
 import com.moveitech.riderapp.dataModel.order.OrderResponse
 import com.moveitech.riderapp.network.ResultWrapper
@@ -44,4 +45,8 @@ class ApiDataRepository @Inject constructor() {
         return safeApiCall(dispatcher) { RetrofitClient.getApi().saveOrderStatus(trackingID,status,businessID) }
     }
 
+
+    suspend fun getTrackingData(trackingID: String,id:String, businessID: String): ResultWrapper<TrackingResponse> {
+        return safeApiCall(dispatcher) { RetrofitClient.getApi().getTrackingData(trackingID,id, businessID) }
+    }
 }

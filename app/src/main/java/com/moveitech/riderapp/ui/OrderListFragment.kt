@@ -25,6 +25,7 @@ import com.moveitech.riderapp.utils.Constants.Companion.RIDER_COMPlETE_BTN
 import com.moveitech.riderapp.utils.Constants.Companion.RIDER_DISPATCH_BTN
 import com.moveitech.riderapp.utils.Constants.Companion.RIDER_HOLD_BTN
 import com.moveitech.riderapp.utils.Constants.Companion.RIDER_PENDING_BTN
+import com.moveitech.riderapp.utils.Constants.Companion.TRACK_LOCATION_BTN
 import com.moveitech.riderapp.viewModel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -124,6 +125,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
         if (order != null) {
             when (order.btnAction) {
                 LOCATION_BTN -> moveToNextScreen(OrderListFragmentDirections.actionOrderListFragmentToMapFragment(order.Longitude,order.Latitude))
+                TRACK_LOCATION_BTN -> moveToNextScreen(OrderListFragmentDirections.actionOrderListFragmentToTrackMapFragment(order.TracingCode))
                 RIDER_DISPATCH_BTN -> {
                     startService(order, 1)
                     viewModel.saveOrders(order.TracingCode, RIDER_DISPATCH_BTN, true)
