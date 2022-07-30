@@ -1,23 +1,18 @@
-package com.moveitech.riderapp.ui
+package com.moveitech.riderapp.ui.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
 import com.moveitech.riderapp.utils.DialogUtils
-import com.moveitech.riderapp.utils.safeNavigate
 import com.moveitech.riderapp.utils.showSnackBar
 import com.moveitech.riderapp.viewModel.BaseViewModel
 
-
-abstract class BaseFragment <T: ViewBinding>:Fragment() {
-
-    protected lateinit var binding:T
+abstract class BaseDialogFragment<T : ViewBinding> : DialogFragment() {
+    protected lateinit var binding: T
     lateinit var dialog: AlertDialog
 
     override fun onCreateView(
@@ -25,33 +20,22 @@ abstract class BaseFragment <T: ViewBinding>:Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         dialog = DialogUtils.getProgressDialog(requireContext())
+        binding = getFragmentBinding(layoutInflater, container)
+        return binding.root
+    }
 
-        binding =getFragmentBinding(layoutInflater,container)
-       return binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews()
+        btnListener()
     }
 
 
     abstract fun initViews()
 
 
-    abstract fun getFragmentBinding(layoutInflater: LayoutInflater,container: ViewGroup?): T
-
-
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initViews()
-        liveDataObserver()
-        btnListener()
-    }
-
-
-
-    abstract fun  liveDataObserver()
-
+    abstract fun getFragmentBinding(layoutInflater: LayoutInflater, container: ViewGroup?): T
     abstract fun btnListener()
     protected fun setupGeneralViewModel(generalViewModel: BaseViewModel) {
         with(generalViewModel) {
@@ -61,7 +45,7 @@ abstract class BaseFragment <T: ViewBinding>:Fragment() {
             }
 
             progressBar.observe(viewLifecycleOwner) {
-                    showProgressDialog(it)
+                showProgressDialog(it)
 
             }
         }
@@ -77,17 +61,5 @@ abstract class BaseFragment <T: ViewBinding>:Fragment() {
             if (dialog.isShowing)
                 dialog.dismiss()
         }
-    }
-
-    protected fun moveToNextScreen(navDirections: NavDirections)
-    {
-         findNavController().safeNavigate(navDirections)
-    }
-
-
-
-    protected fun onBackPressed()
-    {
-        requireActivity().onBackPressed();
     }
 }

@@ -25,5 +25,17 @@
     <string name="status">Status: </string>
     <string name="address">Adress: </string>
     <string name="close">Close</string>
+    <string name="riders">Riders</string>
+    <string name="rider_roles">Rider Roles</string>
+    <string name="no_data_found">No data found</string>
+    <string name="rider_name">Rider Name</string>
+    <string name="email">Email</string>
+    <string name="cnic">CNIC</string>
+    <string name="rider_role">Rider Role</string>
+    <string name="save">Save</string>
+    <string name="add_rider_role">Add Rider Role</string>
+    <string name="enter_role_name">Enter role name</string>
+    <string name="active">Active</string>
+    <string name="add">Add</string>
 
 </resources>

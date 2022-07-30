@@ -37,5 +37,18 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId==R.id.action_rider)
+        {
+            navController.navigate(R.id.riderListFragment)
+        }else if(item.itemId==R.id.action_rider_role)
+        {
+            navController.navigate(R.id.roleListFragment)
+        }
+
+        return true
+
+    }
+
 
 }

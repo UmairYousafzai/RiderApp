@@ -1,7 +1,10 @@
-package com.moveitech.riderapp.ui
+package com.moveitech.riderapp.ui.fragments
 
 import android.graphics.Bitmap
+import com.moveitech.riderapp.utils.showSnackBar
+
 import android.graphics.Canvas
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -37,7 +40,7 @@ class TrackMapFragment : BaseFragment<FragmentTrackingMapBinding>(), OnMapReadyC
             .findFragmentById(R.id.track_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         arguments?.let {
-            val id= TrackMapFragmentArgs.fromBundle(it).trackingId
+            val id = TrackMapFragmentArgs.fromBundle(it).trackingId
             getTrackData(id)
 
         }
@@ -45,7 +48,7 @@ class TrackMapFragment : BaseFragment<FragmentTrackingMapBinding>(), OnMapReadyC
     }
 
     private fun getTrackData(id: String) {
-        viewModel.getTrackingData(id,true)
+        viewModel.getTrackingData(id, true)
 
     }
 
@@ -56,8 +59,11 @@ class TrackMapFragment : BaseFragment<FragmentTrackingMapBinding>(), OnMapReadyC
         {
             trackingResponse.observe(viewLifecycleOwner)
             {
-                it.getContentIfNotHandled().let {
-                    drawPolyLine(it)
+                if ((it.getContentIfNotHandled()?.size ?: 0) != 0) {
+                    drawPolyLine(it.getContentIfNotHandled())
+
+                } else {
+                    showSnackBar("Track data is empty")
                 }
             }
         }
@@ -77,27 +83,42 @@ class TrackMapFragment : BaseFragment<FragmentTrackingMapBinding>(), OnMapReadyC
                 }
             }
         }
-        if (mMap != null) {
-            val icon: BitmapDescriptor? = BitmapFromVector()
 
-            val polyline1 = mMap.addPolyline(
-                PolylineOptions()
-                    .clickable(true)
-                    .addAll(latLngList)
-                    .color(resources.getColor(R.color.blue_text))
-            )
-            mMap.addMarker(
-                MarkerOptions().position(latLngList[latLngList.size - 1]).title("End").icon(icon)
-            )
-
-            mMap.animateCamera(
-                CameraUpdateFactory.newLatLngZoom(
-                    latLngList[latLngList.size - 1],
-                    12.0f
+        mMap.addPolyline(
+            PolylineOptions()
+                .clickable(true)
+                .addAll(latLngList)
+                .color(
+                    ContextCompat.getColor(requireContext(), R.color.blue_text)
                 )
+        )
+        var icon: BitmapDescriptor? = bitmapFromVector(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.ic_start_location
             )
+        )
 
-        }
+        mMap.addMarker(
+            MarkerOptions().position(latLngList[0]).title("Start").icon(icon)
+        )
+        icon = bitmapFromVector(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.ic_end_location
+            )
+        )
+
+        mMap.addMarker(
+            MarkerOptions().position(latLngList[latLngList.size - 1]).title("End").icon(icon)
+        )
+
+        mMap.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                latLngList[latLngList.size - 1],
+                15.0f
+            )
+        )
 
     }
 
@@ -113,29 +134,11 @@ class TrackMapFragment : BaseFragment<FragmentTrackingMapBinding>(), OnMapReadyC
     override fun onMapReady(p0: GoogleMap) {
 
         mMap = p0
-        val polyline1 = mMap.addPolyline(
-            PolylineOptions()
-                .clickable(true)
-                .add(
-                    LatLng(-35.016, 143.321),
-                    LatLng(-34.747, 145.592),
-                    LatLng(-34.364, 147.891),
-                    LatLng(-33.501, 150.217),
-                    LatLng(-32.306, 149.248),
-                    LatLng(-32.491, 147.309)
-                )
-        )
+
     }
 
-    private fun BitmapFromVector(): BitmapDescriptor? {
-        // below line is use to generate a drawable.
-        val vectorDrawable =
-            ContextCompat.getDrawable(
-                requireContext(),
-                com.moveitech.riderapp.R.drawable.current_location
-            )
+    private fun bitmapFromVector(vectorDrawable: Drawable?): BitmapDescriptor? {
 
-        // below line is use to set bounds to our vector drawable.
         vectorDrawable?.setBounds(
             0,
             0,
@@ -143,8 +146,6 @@ class TrackMapFragment : BaseFragment<FragmentTrackingMapBinding>(), OnMapReadyC
             vectorDrawable.intrinsicHeight
         )
 
-        // below line is use to create a bitmap for our
-        // drawable which we have added.
         var bitmap: Bitmap? = null
         if (vectorDrawable != null) {
             bitmap = Bitmap.createBitmap(
@@ -154,16 +155,12 @@ class TrackMapFragment : BaseFragment<FragmentTrackingMapBinding>(), OnMapReadyC
             )
         }
 
-        // below line is use to add bitmap in our canvas.
         val canvas = bitmap?.let { Canvas(it) }
 
-        // below line is use to draw our
-        // vector drawable in canvas.
         if (canvas != null) {
             vectorDrawable?.draw(canvas)
         }
 
-        // after generating our bitmap we are returning our bitmap.
         return if (bitmap != null) {
             BitmapDescriptorFactory.fromBitmap(bitmap)
         } else {

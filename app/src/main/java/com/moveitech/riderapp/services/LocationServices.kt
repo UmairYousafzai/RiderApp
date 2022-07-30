@@ -40,7 +40,7 @@ class LocationService : Service() {
     private val scope = CoroutineScope(Dispatchers.IO + job)
     private var locationType:Int=0
     private var trackingCode:String="0"
-    private var interval: Long = 60000
+    private var interval: Long = 30000
 
     @Inject
     lateinit var repository: ApiDataRepository

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.moveitech.riderapp.ui.authentication.LoginFragment"
+        android:name="com.moveitech.riderapp.ui.fragments.authentication.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
 
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.moveitech.riderapp.ui.SplashFragment"
+        android:name="com.moveitech.riderapp.ui.fragments.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash"
         >
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/orderListFragment"
-        android:name="com.moveitech.riderapp.ui.OrderListFragment"
+        android:name="com.moveitech.riderapp.ui.fragments.OrderListFragment"
         android:label="OrderListFragment"
         tools:layout="@layout/fragment_order_list">
         <action
@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.moveitech.riderapp.ui.MapFragment"
+        android:name="com.moveitech.riderapp.ui.fragments.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map"
 
@@ -86,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/trackMapFragment"
-        android:name="com.moveitech.riderapp.ui.TrackMapFragment"
+        android:name="com.moveitech.riderapp.ui.fragments.TrackMapFragment"
         android:label="TrackMapFragment"
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_left"
@@ -96,4 +96,44 @@
             android:name="tracking_id"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/riderListFragment"
+        android:name="com.moveitech.riderapp.ui.fragments.rider.RiderListFragment"
+        android:label="RiderListFragment"
+        tools:layout="@layout/fragment_rider_list">
+        <action
+            android:id="@+id/action_riderListFragment_to_addRiderFragment"
+            app:destination="@id/addRiderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRiderFragment"
+        android:name="com.moveitech.riderapp.ui.fragments.rider.AddRiderFragment"
+        android:label="AddRiderFragment"
+        tools:layout="@layout/fragment_add_rider"
+        >
+        <argument
+            android:name="rider"
+            app:argType="com.moveitech.riderapp.dataModel.rider.Rider"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/roleListFragment"
+        android:name="com.moveitech.riderapp.ui.fragments.RoleListFragment"
+        android:label="RoleListFragment"
+        tools:layout="@layout/fragment_role_list">
+        <action
+            android:id="@+id/action_roleListFragment_to_addRoleDialog"
+            app:destination="@id/addRoleDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/addRoleDialog"
+        android:name="com.moveitech.riderapp.ui.dialog.AddRoleDialog"
+        android:label="AddRoleDialog"
+        tools:layout="@layout/custom_add_role_dialog">
+        <argument
+            android:name="role"
+            app:argType="com.moveitech.riderapp.dataModel.riderRole.RiderRole"
+            app:nullable="true" />
+    </dialog>
 </navigation>

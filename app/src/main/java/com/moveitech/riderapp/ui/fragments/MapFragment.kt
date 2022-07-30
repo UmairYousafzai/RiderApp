@@ -1,4 +1,4 @@
-package com.moveitech.riderapp.ui
+package com.moveitech.riderapp.ui.fragments
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

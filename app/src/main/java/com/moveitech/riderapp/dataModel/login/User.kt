@@ -10,10 +10,14 @@ data class User(
     val DOL: String="",
     val Details: String="",
     val Email: String="",
-    val FromTime: String="",
     val Mobile: String="",
+    val Password: String="",
     val Phone: String="",
     val RiderCode: String="",
     val RiderName: String="",
-    val ToTime: String=""
+    val RoleId: String="",
+    val RoleName: String="",
+    val ShiftEndTime: String="",
+    val ShiftStartTime: String="",
+    val Status: String=""
 ):Serializable

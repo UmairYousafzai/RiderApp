@@ -1,4 +1,4 @@
-package com.moveitech.riderapp.ui
+package com.moveitech.riderapp.ui.fragments
 
 import android.content.Intent
 import android.os.Handler
@@ -44,16 +44,14 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
     override fun initViews() {
         setHasOptionsMenu(true)
         showToolbar()
-
-        getRiderDetails()
-        swipeListener()
         binding.viewModel = viewModel
-
-
+        swipeListener()
         Handler(Looper.getMainLooper()).postDelayed({
             getOrderNum()
+            getRiderDetails()
 
         }, 400)
+
     }
 
     private fun getOrderNum() {
@@ -82,6 +80,10 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
                     viewModel.getOrders(it.RiderCode, true)
                 }
                 riderCode = it.RiderCode
+                (binding.rvOrderList.adapter as OrdersAdapter).apply {
+                    role = it.RoleName
+                    notifyDataSetChanged()
+                }
 
             }
         }
@@ -104,8 +106,8 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
             btnAction.observe(viewLifecycleOwner)
             {
                 it.getContentIfNotHandled()?.let {
-                    if (it.btnAction!=-11) {
-                        val order= it
+                    if (it.btnAction != -11) {
+                        val order = it
                         checkBtnAction(order)
 //                        it.btnAction = -11
 //                        btnAction.value = it
@@ -113,7 +115,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
                 }
 
             }
-            orderStatusResponse.observe(viewLifecycleOwner){
+            orderStatusResponse.observe(viewLifecycleOwner) {
 
                 showSnackBar("Status Changed Successfully Updated")
             }
@@ -124,8 +126,17 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
     private fun checkBtnAction(order: Order?) {
         if (order != null) {
             when (order.btnAction) {
-                LOCATION_BTN -> moveToNextScreen(OrderListFragmentDirections.actionOrderListFragmentToMapFragment(order.Longitude,order.Latitude))
-                TRACK_LOCATION_BTN -> moveToNextScreen(OrderListFragmentDirections.actionOrderListFragmentToTrackMapFragment(order.TracingCode))
+                LOCATION_BTN -> moveToNextScreen(
+                    OrderListFragmentDirections.actionOrderListFragmentToMapFragment(
+                        order.Longitude,
+                        order.Latitude
+                    )
+                )
+                TRACK_LOCATION_BTN -> moveToNextScreen(
+                    OrderListFragmentDirections.actionOrderListFragmentToTrackMapFragment(
+                        order.TracingCode
+                    )
+                )
                 RIDER_DISPATCH_BTN -> {
                     startService(order, 1)
                     viewModel.saveOrders(order.TracingCode, RIDER_DISPATCH_BTN, true)
@@ -193,8 +204,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId== R.id.action_logout)
-        {
+        if (item.itemId == R.id.action_logout) {
             lifecycleScope.launch {
                 dataStore.clear()
                 moveToNextScreen(OrderListFragmentDirections.actionOrderListFragmentToLoginFragment())

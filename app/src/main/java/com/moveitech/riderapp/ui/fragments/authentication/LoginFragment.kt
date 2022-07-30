@@ -1,4 +1,4 @@
-package com.moveitech.riderapp.ui.authentication
+package com.moveitech.riderapp.ui.fragments.authentication
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.moveitech.riderapp.dataModel.login.User
 import com.moveitech.riderapp.viewModel.AuthenticationViewModel
 import com.moveitech.riderapp.databinding.FragmentLoginBinding
-import com.moveitech.riderapp.ui.BaseFragment
+import com.moveitech.riderapp.ui.fragments.BaseFragment
 import com.moveitech.riderapp.utils.DataStoreHelper
 import com.moveitech.riderapp.utils.hideToolbar
 import dagger.hilt.android.AndroidEntryPoint

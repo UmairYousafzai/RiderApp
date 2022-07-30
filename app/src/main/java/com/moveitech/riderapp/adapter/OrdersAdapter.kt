@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
@@ -22,17 +23,23 @@ import com.moveitech.riderapp.utils.getDistanceBetweenLocation
 import com.moveitech.riderapp.viewModel.OrderViewModel
 
 
-class OrdersAdapter(list: ArrayList<String> = ArrayList(), val viewModel: OrderViewModel) :
+class OrdersAdapter(list: ArrayList<Order> = ArrayList(), val viewModel: OrderViewModel) :
     BaseAdapter<OrderCardBinding>(list) {
 
     var orderNum: String = ""
+    var role=""
 
     override fun bind(binding: OrderCardBinding, item: Any, position: Int) {
         val model = item as Order
         binding.viewModel = viewModel
         binding.model = model
 
+        if ((role == "Admin").not())
+        {
+            binding.btnTrackLocation.visibility=View.GONE
+        }
         binding.btnRiderLocationSelection.isActivated = model.equals(orderNum).not()
+
 
         binding.tvDistance.apply {
             text= "Distance: 0 Km "

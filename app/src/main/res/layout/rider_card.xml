@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.moveitech.riderapp.utils.Constants"/>
+        <variable
+            name="viewModel"
+            type="com.moveitech.riderapp.viewModel.RiderViewModel" />
+        <variable
+            name="model"
+            type="com.moveitech.riderapp.dataModel.rider.Rider" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="10dp"
+            >
+
+            <TextView
+                android:id="@+id/tv_rider_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{model.riderName,default=RiderName}"
+                android:textColor="@color/blue_text"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="6dp"
+                app:layout_constraintEnd_toStartOf="@id/btn_edit"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/view"
+                />
+            <ImageButton
+                android:id="@+id/btn_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_edit_24"
+                app:tint="@color/blue_text"
+                android:onClick="@{()->viewModel.onAdapterItemClick(Constants.EDIT_RIDER_BTN,model)}"
+                android:background="@android:color/transparent"
+                app:layout_constraintStart_toEndOf="@id/tv_rider_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_rider_name"
+                app:layout_constraintBottom_toBottomOf="@id/tv_rider_name"
+                />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/light_gray_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

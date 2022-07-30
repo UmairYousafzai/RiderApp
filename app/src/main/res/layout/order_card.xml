@@ -145,7 +145,7 @@
                 android:textStyle="bold"
 
                 app:layout_constraintBottom_toTopOf="@id/tv_distance"
-                app:layout_constraintEnd_toStartOf="@id/btn__track_location"
+                app:layout_constraintEnd_toStartOf="@id/btn_location"
                 app:layout_constraintStart_toStartOf="@id/tv_tracking_code"
                 app:layout_constraintTop_toBottomOf="@id/tv_tracking_code" />
 
@@ -157,7 +157,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/tv_status"
-                app:layout_constraintEnd_toStartOf="@id/btn__track_location"
+                app:layout_constraintEnd_toStartOf="@id/btn_location"
                 app:layout_constraintStart_toStartOf="@id/tv_tracking_code"
                 app:layout_constraintTop_toBottomOf="@id/tv_order_no" />
 

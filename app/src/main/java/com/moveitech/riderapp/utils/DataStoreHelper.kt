@@ -38,13 +38,15 @@ class DataStoreHelper @Inject constructor(private val dataStore:DataStore<Prefer
         dataStore.edit { preferences->
             preferences[RIDER_CODE]=user.RiderCode
             preferences[RIDER_NAME]=user.RiderName
+            preferences[RIDER_ROLE]=user.RoleName
         }
     }
 
     val user:Flow<User> = dataStore.data.map { preferences->
         User(
             RiderCode = preferences[RIDER_CODE]?:"",
-            RiderName = preferences[RIDER_NAME]?:""
+            RiderName = preferences[RIDER_NAME]?:"",
+            RoleName = preferences[RIDER_ROLE]?:""
         )
     }
     suspend fun saveIsServiceRunning(isServiceRunning:Boolean){
@@ -66,6 +68,7 @@ class DataStoreHelper @Inject constructor(private val dataStore:DataStore<Prefer
         val IS_LOGIN= booleanPreferencesKey(name = "isLogin")
         val RIDER_CODE= stringPreferencesKey(name = "rider code")
         val RIDER_NAME= stringPreferencesKey(name = "rider name")
+        val RIDER_ROLE= stringPreferencesKey(name = "rider role")
 
         val IS_SERVICE_RUNNING= booleanPreferencesKey(name = "isServiceRunning")
         val ORDER_NUM= stringPreferencesKey(name = "order_num")
