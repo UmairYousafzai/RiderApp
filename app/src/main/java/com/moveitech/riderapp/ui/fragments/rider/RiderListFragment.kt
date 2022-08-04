@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.moveitech.riderapp.databinding.FragmentRiderListBinding
 import com.moveitech.riderapp.ui.fragments.BaseFragment
+import com.moveitech.riderapp.utils.*
 import com.moveitech.riderapp.utils.Constants.Companion.ADD_RIDER_BTN
-import com.moveitech.riderapp.utils.DataStoreHelper
-import com.moveitech.riderapp.utils.OneShotEvent
-import com.moveitech.riderapp.utils.hideToolbar
 import com.moveitech.riderapp.viewModel.RiderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -28,7 +26,9 @@ class RiderListFragment : BaseFragment<FragmentRiderListBinding>() {
     override fun initViews() {
         Log.e(TAG,"===>")
         setHasOptionsMenu(true)
-        hideToolbar()
+        showToolbar()
+        setToolbarTitle("Riders")
+
         binding.viewModel = viewModel
         swipeListener()
     }

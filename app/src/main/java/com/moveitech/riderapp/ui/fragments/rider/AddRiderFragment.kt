@@ -27,6 +27,7 @@ class AddRiderFragment : BaseFragment<FragmentAddRiderBinding>() {
     override fun initViews() {
         Log.e(TAG, "===>")
         showToolbar()
+        setToolbarTitle("Add Rider")
         if (rider?.RiderCode.isNullOrEmpty()) {
             binding.viewModel = viewModel
             binding.executePendingBindings()

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_product"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:background="@color/app_theme_color"
+        android:padding="15dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+    <EditText
+        android:id="@+id/et_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/item_name"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:inputType="textPersonName"
+        android:autofillHints="name"
+        android:layout_margin="10dp"
+        android:drawableTint="@color/app_theme_color"
+        android:drawablePadding="5dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <EditText
+        android:id="@+id/et_unit_cost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/unit_cost"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:inputType="textPersonName"
+        android:autofillHints="name"
+        android:drawableTint="@color/app_theme_color"
+        android:layout_margin="10dp"
+        android:drawablePadding="5dp"
+        app:layout_constraintTop_toBottomOf="@id/et_item_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/et_unit_retail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/unit_retail"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+      android:inputType="textEmailAddress"
+        android:autofillHints="name"
+        android:drawableTint="@color/app_theme_color"
+        android:layout_margin="10dp"
+        android:drawablePadding="5dp"
+        app:layout_constraintTop_toBottomOf="@id/et_unit_cost"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:layout_marginVertical="30dp"
+        app:layout_constraintEnd_toStartOf="@id/btn_save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_unit_retail"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+   <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        app:layout_constraintTop_toTopOf="@id/btn_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toEndOf="@id/btn_cancel"
+       app:layout_constraintBottom_toBottomOf="@id/btn_cancel"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

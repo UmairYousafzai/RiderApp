@@ -20,7 +20,7 @@ object RetrofitClient  {
 
         return Retrofit.Builder()
             .client(builder.build())
-            .baseUrl("https://easyapi.sbstorefsd.com/")
+            .baseUrl("https://easyapitest.thevapehouse.pk/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

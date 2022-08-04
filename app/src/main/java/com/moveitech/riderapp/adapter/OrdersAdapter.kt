@@ -97,10 +97,10 @@ class OrdersAdapter(list: ArrayList<Order> = ArrayList(), val viewModel: OrderVi
                 model.Status = RIDER_CANCEL_BTN.toString()
                 viewModel.onAdapterItemClick(RIDER_CANCEL_BTN, model)
             }
-            R.id.action_close -> {
-                model.Status= RIDER_CLOSE_BTN.toString()
-                viewModel.onAdapterItemClick(RIDER_CLOSE_BTN, model)
-            }
+//            R.id.action_close -> {
+//                model.Status= RIDER_CLOSE_BTN.toString()
+//                viewModel.onAdapterItemClick(RIDER_CLOSE_BTN, model)
+//            }
             R.id.action_hold -> {
                 model.Status= RIDER_HOLD_BTN.toString()
                 viewModel.onAdapterItemClick(RIDER_HOLD_BTN, model)

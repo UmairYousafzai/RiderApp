@@ -1,4 +1,4 @@
-package com.moveitech.riderapp.ui.fragments
+package com.moveitech.riderapp.ui.fragments.maps
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,6 +10,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.moveitech.riderapp.R
 import com.moveitech.riderapp.databinding.FragmentMapBinding
+import com.moveitech.riderapp.ui.fragments.BaseFragment
 import com.moveitech.riderapp.utils.DataStoreHelper
 import com.moveitech.riderapp.utils.getCompleteAddressString
 import com.moveitech.riderapp.utils.hideToolbar

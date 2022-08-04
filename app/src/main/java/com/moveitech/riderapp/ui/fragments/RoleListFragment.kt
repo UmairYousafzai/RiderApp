@@ -21,6 +21,8 @@ class RoleListFragment : BaseFragment<FragmentRoleListBinding>() {
     override fun initViews() {
         Log.e(TAG,"===>")
         showToolbar()
+        setToolbarTitle("Roles")
+
         binding.viewModel = viewModel
         swipeListener()
     }

@@ -44,6 +44,8 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
     override fun initViews() {
         setHasOptionsMenu(true)
         showToolbar()
+        setToolbarTitle("Orders")
+
         binding.viewModel = viewModel
         swipeListener()
         Handler(Looper.getMainLooper()).postDelayed({
@@ -142,8 +144,9 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
                     viewModel.saveOrders(order.TracingCode, RIDER_DISPATCH_BTN, true)
                 }
                 RIDER_COMPlETE_BTN -> {
-                    startService(order, 2)
+                    startService(order, RIDER_CLOSE_BTN)
                     viewModel.saveOrders(order.TracingCode, RIDER_COMPlETE_BTN, true)
+
                 }
                 RIDER_PENDING_BTN -> {
                     viewModel.saveOrders(order.TracingCode, RIDER_PENDING_BTN, true)

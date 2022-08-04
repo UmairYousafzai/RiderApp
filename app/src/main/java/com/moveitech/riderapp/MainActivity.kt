@@ -38,12 +38,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId==R.id.action_rider)
-        {
-            navController.navigate(R.id.riderListFragment)
-        }else if(item.itemId==R.id.action_rider_role)
-        {
-            navController.navigate(R.id.roleListFragment)
+        when (item.itemId) {
+            R.id.action_rider -> {
+                navController.navigate(R.id.riderListFragment)
+            }
+            R.id.action_rider_role -> {
+                navController.navigate(R.id.roleListFragment)
+            }
+            R.id.action_logout -> {
+                lifecycleScope.launch {
+                    dataStoreHelper.clear()
+                    navController.navigate(R.id.splashFragment)
+                }
+            }
         }
 
         return true

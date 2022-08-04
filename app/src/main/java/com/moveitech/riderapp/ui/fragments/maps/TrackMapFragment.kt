@@ -1,4 +1,4 @@
-package com.moveitech.riderapp.ui.fragments
+package com.moveitech.riderapp.ui.fragments.maps
 
 import android.graphics.Bitmap
 import com.moveitech.riderapp.utils.showSnackBar
@@ -17,6 +17,7 @@ import com.google.android.gms.maps.model.*
 import com.moveitech.riderapp.R
 import com.moveitech.riderapp.dataModel.location.TrackingData
 import com.moveitech.riderapp.databinding.FragmentTrackingMapBinding
+import com.moveitech.riderapp.ui.fragments.BaseFragment
 import com.moveitech.riderapp.utils.DataStoreHelper
 import com.moveitech.riderapp.utils.hideToolbar
 import com.moveitech.riderapp.viewModel.OrderViewModel

@@ -3,7 +3,6 @@ package com.moveitech.riderapp.utils
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
@@ -21,7 +20,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
@@ -130,7 +128,8 @@ fun Fragment.hideToolbar() {
 
 fun Fragment.showToolbar() {
     (requireActivity() as AppCompatActivity).supportActionBar?.show()
-    (requireActivity() as AppCompatActivity).supportActionBar?.title = "Order List"
+}fun Fragment.setToolbarTitle(title:String) {
+    (requireActivity() as AppCompatActivity).supportActionBar?.title=title
 }
 
 fun NavController.safeNavigate(direction: NavDirections) {
