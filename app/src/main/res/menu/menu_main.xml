@@ -11,6 +11,10 @@
         android:title="@string/rider_roles"
         app:showAsAction="collapseActionView"
         /> <item
+        android:id="@+id/action_order"
+        android:title="@string/order"
+        app:showAsAction="collapseActionView"
+        /> <item
         android:id="@+id/action_logout"
         android:title="@string/logout"
         app:showAsAction="collapseActionView"

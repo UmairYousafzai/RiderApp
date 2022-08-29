@@ -3,6 +3,7 @@ package com.moveitech.riderapp.utils
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
@@ -12,6 +13,8 @@ import android.location.Location
 import android.location.LocationManager
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -122,6 +125,7 @@ fun Fragment.takePermission() {
 
 }
 
+
 fun Fragment.hideToolbar() {
     (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 }
@@ -199,9 +203,19 @@ fun getDistanceBetweenLocation(
                 distance.invoke("$solution Km")
             }
         }
-    }
+    }else
+    {
+        val permissionArray = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+        ActivityCompat.requestPermissions(
+            context as Activity,
+            permissionArray,
+            LOCATION_PERMISSION_CODE
+        )    }
 
 
-
+}
+fun AutoCompleteTextView.setupAdapter(list: ArrayList<String>) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, list)
+    setAdapter(adapter)
 }
 

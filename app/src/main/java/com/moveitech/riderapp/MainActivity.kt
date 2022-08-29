@@ -10,6 +10,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import com.moveitech.riderapp.utils.DataStoreHelper
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import okhttp3.internal.notifyAll
 import javax.inject.Inject
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var dataStoreHelper: DataStoreHelper
     private lateinit var navController: NavController
+    private var isAdmin= false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
 
+        getDataFromStore()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -45,6 +48,9 @@ class MainActivity : AppCompatActivity() {
             R.id.action_rider_role -> {
                 navController.navigate(R.id.roleListFragment)
             }
+            R.id.action_order -> {
+                navController.navigate(R.id.addOrderFragment)
+            }
             R.id.action_logout -> {
                 lifecycleScope.launch {
                     dataStoreHelper.clear()
@@ -57,5 +63,37 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun getDataFromStore()
+    {
+        lifecycleScope.launch {
+            dataStoreHelper.user.collect {
+                isAdmin = it.RoleName== "Admin"
+                runOnUiThread{
+                    invalidateOptionsMenu()
+                }
+            }
+        }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if (!isAdmin)
+        {
+            if (menu != null) {
+                menu.findItem(R.id.action_rider).isVisible= false
+                menu.findItem(R.id.action_rider_role).isVisible= false
+                menu.findItem(R.id.action_order).isVisible= false
+            }
+        }else
+        {
+            if (menu != null) {
+                menu.findItem(R.id.action_rider).isVisible= true
+                menu.findItem(R.id.action_rider_role).isVisible= true
+                menu.findItem(R.id.action_order).isVisible= true
+            }
+        }
+
+
+        return true
+    }
 
 }

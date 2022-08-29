@@ -53,7 +53,6 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
             getRiderDetails()
 
         }, 400)
-
     }
 
     private fun getOrderNum() {
@@ -99,6 +98,8 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
             setupGeneralViewModel(this)
             orderResponse.observe(viewLifecycleOwner)
             {
+                ( binding.rvOrderList.adapter as OrdersAdapter).context= requireActivity()
+
                 it.getContentIfNotHandled().let {
                     binding.swipeLayout.isRefreshing = false
 

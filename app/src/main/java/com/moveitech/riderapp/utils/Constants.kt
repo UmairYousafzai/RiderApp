@@ -23,6 +23,7 @@ class Constants {
         const val RIDER_BY_CODE = "api/rider/RiderByCode"
         const val RIDER_ROLE = "api/rider/RiderRolesData"
         const val SAVE_RIDER_ROLE = "api/rider/SaveRiderRoles"
+        const val SAVE_ORDER = "api/rider/SaveSaleByRider"
 
         /****************************   BTN KEY **********************/
 
@@ -41,5 +42,8 @@ class Constants {
         const val ADD_ROLE_BTN=12
         const val EDIT_ROLE_BTN=13
         const val CANCEL_BTN=14
+        const val ADD_CUSTOMER_BTN=15
+        const val ADD_PRODUCT_BTN=16
+        const val SAVE_ORDER_BTN=17
     }
 }

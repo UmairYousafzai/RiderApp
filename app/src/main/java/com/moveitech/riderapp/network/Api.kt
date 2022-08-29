@@ -1,10 +1,13 @@
 package com.moveitech.riderapp.network
 
 import com.moveitech.riderapp.dataModel.generalReponse.BaseResponse
+import com.moveitech.riderapp.dataModel.item.ItemResponse
 import com.moveitech.riderapp.dataModel.location.LocationRequest
 import com.moveitech.riderapp.dataModel.location.TrackingResponse
 import com.moveitech.riderapp.dataModel.login.LoginResponse
+import com.moveitech.riderapp.dataModel.order.Document
 import com.moveitech.riderapp.dataModel.order.OrderResponse
+import com.moveitech.riderapp.dataModel.party.PartyResponse
 import com.moveitech.riderapp.dataModel.rider.Rider
 import com.moveitech.riderapp.dataModel.rider.RiderListResponse
 import com.moveitech.riderapp.dataModel.rider.SaveRiderResponse
@@ -15,11 +18,13 @@ import com.moveitech.riderapp.utils.Constants.Companion.RIDERS
 import com.moveitech.riderapp.utils.Constants.Companion.RIDER_BY_CODE
 import com.moveitech.riderapp.utils.Constants.Companion.RIDER_ROLE
 import com.moveitech.riderapp.utils.Constants.Companion.SALE_ORDER_BY_RIDER
+import com.moveitech.riderapp.utils.Constants.Companion.SAVE_ORDER
 import com.moveitech.riderapp.utils.Constants.Companion.SAVE_ORDER_STATUS
 import com.moveitech.riderapp.utils.Constants.Companion.SAVE_ORDER_TRACKING
 import com.moveitech.riderapp.utils.Constants.Companion.SAVE_RIDERS
 import com.moveitech.riderapp.utils.Constants.Companion.SAVE_RIDER_ROLE
 import com.moveitech.riderapp.utils.Constants.Companion.TRACKING_BY_SALE_ORDER
+import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -67,6 +72,13 @@ interface Api {
         @Query("BusinessId") businessID: String
     ): BaseResponse
 
+    /****************************   Item **********************/
+
+
+    @GET("api/Product/ProductData")
+    suspend fun getProducts(@Query("BusinessId") businessID: String): ItemResponse
+
+
     /****************************   Rider **********************/
 
     @GET(RIDERS)
@@ -85,7 +97,19 @@ interface Api {
     ): SaveRiderResponse
 
     @POST(SAVE_RIDERS)
-    suspend fun saveRider(@Body rider:Rider): SaveRiderResponse
+    suspend fun saveRider(@Body rider: Rider): SaveRiderResponse
+
     @POST(SAVE_RIDER_ROLE)
-    suspend fun saveRole(@Body role:RiderRole): BaseResponse
+    suspend fun saveRole(@Body role: RiderRole): BaseResponse
+    @POST(SAVE_ORDER)
+    suspend fun saveOrder(@Body document: Document): BaseResponse
+
+    /****************************   Party **********************/
+
+    @GET("api/Party/PartyData")
+    suspend fun getParties(
+        @Query("BusinessId") businessID: String?,
+        @Query("partytype") partyType: String?
+    ): PartyResponse
+
 }

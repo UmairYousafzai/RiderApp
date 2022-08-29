@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="com.moveitech.riderapp.utils.Constants"/>
+        <import type="com.moveitech.riderapp.utils.Converter"/>
+        <variable
+            name="viewModel"
+            type="com.moveitech.riderapp.viewModel.OrderViewModel" />
 
     </data>
 
@@ -22,8 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/tv_background"
-                android:onClick="@{()-> viewModel.onClick(2)}"
-                android:paddingHorizontal="15dp"
+               android:paddingHorizontal="15dp"
                 android:paddingVertical="2dp"
                 android:text="@string/retrieve"
                 android:textColor="@color/white"
@@ -40,7 +43,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/tv_background"
-                android:onClick="@{()-> viewModel.onClick(CONSTANTS.AUTHORIZE_BTN)}"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="2dp"
                 android:text="@string/authorize"
@@ -89,7 +91,7 @@
                 android:drawablePadding="8dp"
                 android:elevation="5dp"
                 android:padding="8dp"
-                android:text="@={viewModel.date}"
+                android:text="@{viewModel.getDate()}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:drawableLeftCompat="@drawable/ic_calendar_line"
@@ -122,7 +124,7 @@
                 android:background="@drawable/seach_view_background"
                 android:elevation="5dp"
                 android:padding="8dp"
-                android:text="@={viewModel.docNumberBusiness}"
+                android:text="*****"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/spinner_select_customer_layout"
@@ -143,7 +145,7 @@
                 app:endIconTint="@color/app_theme_color"
                 app:hintTextColor="@color/app_theme_color"
                 app:layout_constraintBottom_toTopOf="@id/select_item_spinner"
-                app:layout_constraintEnd_toStartOf="@id/btn_search_supplier"
+                app:layout_constraintEnd_toStartOf="@id/btn_add_customer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_date">
 
@@ -154,11 +156,11 @@
                     android:focusableInTouchMode="false"
                     android:inputType="none"
                     android:text="@={viewModel.selectedCustomerName}"
-                    app:setTextAdapter="@{viewModel.customerAdapter}" />
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
-                android:id="@+id/btn_search_supplier"
+                android:id="@+id/btn_add_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -166,7 +168,7 @@
                 android:background="@android:color/transparent"
                 android:minWidth="50dp"
                 android:minHeight="50dp"
-                android:onClick="@{()-> viewModel.onClick(CONSTANTS.SEARCH_SUPPLIER_BTN)}"
+                android:onClick="@{()-> viewModel.onClick(Constants.ADD_CUSTOMER_BTN)}"
                 android:src="@drawable/ic_baseline_add_24"
                 app:layout_constraintBottom_toBottomOf="@id/spinner_select_customer_layout"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -189,7 +191,7 @@
                 app:boxBackgroundColor="@color/white"
                 app:endIconTint="@color/app_theme_color"
                 app:hintTextColor="@color/app_theme_color"
-                app:layout_constraintEnd_toStartOf="@id/btn_search_product"
+                app:layout_constraintEnd_toStartOf="@id/btn_add_product"
                 app:layout_constraintStart_toStartOf="parent"
 
                 app:layout_constraintTop_toBottomOf="@id/spinner_select_customer_layout">
@@ -201,11 +203,11 @@
                     android:focusableInTouchMode="false"
                     android:inputType="none"
                     android:text="@={viewModel.selectedProductName}"
-                    app:setTextAdapter="@{viewModel.productAdapter}" />
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
-                android:id="@+id/btn_search_product"
+                android:id="@+id/btn_add_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -213,7 +215,7 @@
                 android:background="@android:color/transparent"
                 android:minWidth="50dp"
                 android:minHeight="50dp"
-                android:onClick="@{()-> viewModel.onClick(CONSTANTS.SEARCH_ITEMS_BTN)}"
+                android:onClick="@{()-> viewModel.onClick(Constants.ADD_PRODUCT_BTN)}"
                 android:src="@drawable/ic_baseline_add_24"
                 app:layout_constraintBottom_toBottomOf="@id/select_item_spinner"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -229,22 +231,22 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                android:weightSum="5"
+                android:weightSum="3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/select_item_spinner">
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="@string/item_name"
-                    android:textColor="@color/app_theme_color"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:text="@string/item_name"-->
+<!--                    android:textColor="@color/app_theme_color"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold"-->
 
-                    />
+<!--                    />-->
 <!--                <View-->
 <!--                    android:layout_width="1dp"-->
 <!--                    android:layout_height="match_parent"-->
@@ -255,10 +257,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Qty"
+                    android:text="@string/qty"
                     android:textColor="@color/app_theme_color"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:gravity="center"
 
                     />
 <!--                <View-->
@@ -276,6 +279,7 @@
                     android:textColor="@color/app_theme_color"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:gravity="center"
 
                     />
 <!--                <View-->
@@ -290,6 +294,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/amount"
+                    android:gravity="center"
                     android:textColor="@color/app_theme_color"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -309,11 +314,12 @@
                 android:background="@drawable/rv_background"
                 android:elevation="5dp"
                 android:padding="5dp"
+                tools:listitem="@layout/sale_item_card"
                 app:layout_constraintBottom_toTopOf="@id/tv__sub_total_heading"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recycler_headings"
-                app:setAdapter="@{viewModel.adapter}"
+                app:setAdapter="@{viewModel.itemAdapter}"
                 >
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -361,15 +367,15 @@
 
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/tv_tax"
+                app:layout_constraintEnd_toStartOf="@id/tv_discount"
                 app:layout_constraintStart_toStartOf="@id/tv__sub_total_heading"
                 app:layout_constraintTop_toBottomOf="@id/tv__sub_total_heading" />
 
             <TextView
-                android:id="@+id/tv_tax"
+                android:id="@+id/tv_discount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{Converter.FormatDoubleNumbers(viewModel.gstTax),default=1332}"
+                android:text="@{Converter.FormatDoubleNumbers(viewModel.discount),default=1332}"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_tax_heading"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -404,7 +410,6 @@
                 android:text="@{Converter.FormatDoubleNumbers(viewModel.totalAmount),default=1234}"
 
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/new_fab"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_all_total_heading"
                 app:layout_constraintTop_toTopOf="@id/tv_all_total_heading"
@@ -412,20 +417,20 @@
 
                 />
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/new_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:backgroundTint="@color/app_theme_color"
-                android:onClick="@{()-> viewModel.onClick(CONSTANTS.NEW_BTN)}"
-                android:text="New"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:visibility="gone"
-                app:icon="@drawable/ic_baseline_done_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+<!--            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+<!--                android:id="@+id/new_fab"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="16dp"-->
+<!--                android:backgroundTint="@color/app_theme_color"-->
+<!--                android:onClick="@{()-> viewModel.onClick(CONSTANTS.NEW_BTN)}"-->
+<!--                android:text="New"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:visibility="gone"-->
+<!--                app:icon="@drawable/ic_baseline_done_24"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent" />-->
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/save_fab"
@@ -433,12 +438,13 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:backgroundTint="@color/app_theme_color"
-                android:onClick="@{()-> viewModel.onClick(CONSTANTS.SAVE_BTN)}"
-                android:text="SAVE"
+                android:onClick="@{()-> viewModel.onClick(Constants.SAVE_ORDER_BTN)}"
+                android:text="@string/save"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:visibility="visible"
                 app:icon="@drawable/ic_baseline_done_24"
+                app:iconTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

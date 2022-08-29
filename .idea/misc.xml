@@ -11,6 +11,7 @@
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1855" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.198" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable/ic_calendar_line.xml" value="0.141" />
+        <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable/ic_edit_24.xml" value="0.141" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable/ic_end_location.xml" value="0.1855" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable/ic_start_location.xml" value="0.1855" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/drawable/seach_view_background.xml" value="0.141" />
@@ -26,14 +27,17 @@
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_login.xml" value="0.17074275362318841" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_map.xml" value="0.17074275362318841" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_order_list.xml" value="0.25" />
+        <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_orders.xml" value="0.19114583333333332" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_rider_list.xml" value="0.1921875" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_role_list.xml" value="0.19114583333333332" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_splash.xml" value="0.17074275362318841" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/fragment_tracking_map.xml" value="0.1921875" />
+        <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/ic_edit_24.xml" value="0.1921875" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/order_card.xml" value="0.25" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/progress_dialog_layout.xml" value="0.17074275362318841" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/rider_card.xml" value="0.1921875" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/role_card.xml" value="0.1921875" />
+        <entry key="..\:/Umair Data/RiderApp/app/src/main/res/layout/sale_item_card.xml" value="0.1921875" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/menu/drop_down_menu.xml" value="0.1921875" />
         <entry key="..\:/Umair Data/RiderApp/app/src/main/res/menu/menu_main.xml" value="0.1921875" />
       </map>

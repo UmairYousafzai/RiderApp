@@ -2,10 +2,13 @@ package com.moveitech.riderapp.repository
 
 
 import com.moveitech.riderapp.dataModel.generalReponse.BaseResponse
+import com.moveitech.riderapp.dataModel.item.ItemResponse
 import com.moveitech.riderapp.dataModel.location.LocationRequest
 import com.moveitech.riderapp.dataModel.location.TrackingResponse
 import com.moveitech.riderapp.dataModel.login.LoginResponse
+import com.moveitech.riderapp.dataModel.order.Document
 import com.moveitech.riderapp.dataModel.order.OrderResponse
+import com.moveitech.riderapp.dataModel.party.PartyResponse
 import com.moveitech.riderapp.dataModel.rider.Rider
 import com.moveitech.riderapp.dataModel.rider.RiderListResponse
 import com.moveitech.riderapp.dataModel.rider.SaveRiderResponse
@@ -57,6 +60,13 @@ class ApiDataRepository @Inject constructor() {
     suspend fun getRiders( businessID: String): ResultWrapper<RiderListResponse> {
         return safeApiCall(dispatcher) { RetrofitClient.getApi().getRiders( businessID) }
     }
+    suspend fun getProducts( businessID: String): ResultWrapper<ItemResponse> {
+        return safeApiCall(dispatcher) { RetrofitClient.getApi().getProducts( businessID) }
+    }
+
+    suspend fun getParty( businessID: String): ResultWrapper<PartyResponse> {
+        return safeApiCall(dispatcher) { RetrofitClient.getApi().getParties( businessID,"c") }
+    }
 
     suspend fun getRiderRoles( businessID: String): ResultWrapper<RiderRoleListResponse> {
         return safeApiCall(dispatcher) { RetrofitClient.getApi().getRiderRoles( businessID) }
@@ -71,5 +81,8 @@ class ApiDataRepository @Inject constructor() {
     }
     suspend fun saveRole( role: RiderRole): ResultWrapper<BaseResponse> {
         return safeApiCall(dispatcher) { RetrofitClient.getApi().saveRole( role) }
+    }
+    suspend fun saveOrder( document: Document): ResultWrapper<BaseResponse> {
+        return safeApiCall(dispatcher) { RetrofitClient.getApi().saveOrder( document) }
     }
 }

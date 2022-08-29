@@ -1,5 +1,6 @@
 package com.moveitech.riderapp.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -25,7 +26,7 @@ import com.moveitech.riderapp.viewModel.OrderViewModel
 
 class OrdersAdapter(list: ArrayList<Order> = ArrayList(), val viewModel: OrderViewModel) :
     BaseAdapter<OrderCardBinding>(list) {
-
+    var context: Context? =null
     var orderNum: String = ""
     var role=""
 
@@ -45,9 +46,13 @@ class OrdersAdapter(list: ArrayList<Order> = ArrayList(), val viewModel: OrderVi
             text= "Distance: 0 Km "
             if(model.Latitude.isEmpty().not()&& model.Longitude.isEmpty().not())
             {
-                getDistanceBetweenLocation(model.Latitude.toDouble(),model.Longitude.toDouble(),context)
-                {
-                    text="Distance: $it"
+                this@OrdersAdapter.context?.let {
+                    getDistanceBetweenLocation(model.Latitude.toDouble(),model.Longitude.toDouble(),
+                        it
+                    )
+                    {
+                        text="Distance: $it"
+                    }
                 }
 
             }

@@ -50,5 +50,9 @@
     <string name="add_product">Add Product</string>
     <string name="unit_cost">Unit Cost</string>
     <string name="unit_retail">Unit Retail</string>
+    <string name="add_order">Add Order</string>
+    <string name="qty">Qty</string>
+    <string name="rate">Rate</string>
+    <string name="order">Order</string>
 
 </resources>

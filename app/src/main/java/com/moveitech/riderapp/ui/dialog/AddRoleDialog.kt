@@ -4,8 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.moveitech.riderapp.databinding.CustomAddRoleDialogBinding
-import com.moveitech.riderapp.ui.fragments.rider.AddRiderFragmentArgs
-import com.moveitech.riderapp.utils.Constants.Companion.ADD_ROLE_BTN
 import com.moveitech.riderapp.utils.Constants.Companion.CANCEL_BTN
 import com.moveitech.riderapp.viewModel.RoleViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +17,7 @@ class AddRoleDialog: BaseDialogFragment<CustomAddRoleDialogBinding>() {
     override fun initViews() {
         if (role!=null)
         {
-            role!!.OperationMode= "UPDATE"
+            role!!.Action= "UPDATE"
             viewModel.role.value=role
         }
         binding.viewModel=viewModel
